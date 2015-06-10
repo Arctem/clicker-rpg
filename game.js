@@ -7,11 +7,10 @@ window.addEventListener('load',function(e) {
     .controls()                        // Add in default controls (keyboard, buttons)
     .touch(Q.SPRITE_ALL);              // Add in touch support (for the UI)
 
-
   Q.Sprite.extend("Tile", {
     init: function(p) {
       this._super(p, {
-        // asset: "not_cylon.png",
+        asset: "grass.png",
         x: 100,
         y: 100,
         w: 200,
@@ -42,15 +41,6 @@ window.addEventListener('load',function(e) {
     },
   });
 
-  // Q.load(["not_cylon.png"], function() {
-  //   var tile = new Q.Tile();
-  //   Q.gameLoop(function(dt) {
-  //     tile.update(dt);
-  //     Q.clear();
-  //     tile.render(Q.ctx);
-  //   })
-  // });
-
   Q.scene("map", function(stage) {
     // for(x = 0; x < 500; x += 10) {
     //   for(y = 0; y < 500; y += 10) {
@@ -61,11 +51,12 @@ window.addEventListener('load',function(e) {
     // stage.moveTo(0, 0);
   });
 
-  Q.stageScene("map");
+  Q.load("grass.png", function() {
+    Q.stageScene("map");
+  });
 
   Q.debug = true;
   Q.debugFill = true;
-
 
   var currentObj = null;
 
