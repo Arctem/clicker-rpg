@@ -1,5 +1,8 @@
 window.addEventListener('load',function(e) {
 
+  var TILEWIDTH = 200;
+  var TILEHEIGHT = 100;
+
   // Now set up your game (most games will load a separate .js file)
   var Q = Quintus({ development: true })
     .include("Sprites, Scenes, Input, 2D, Touch")
@@ -14,9 +17,11 @@ window.addEventListener('load',function(e) {
         asset: "grass.png",
         x: x,
         y: y,
-        w: 200,
-        h: 100,
-        points: [[100, 0], [50, 50], [-50, 50], [-100, 0], [-50, -50], [50, -50]],
+        w: TILEWIDTH,
+        h: TILEHEIGHT,
+        points: [[TILEWIDTH / 2, 0], [TILEHEIGHT / 2, TILEHEIGHT / 2],
+          [-TILEHEIGHT / 2, TILEHEIGHT / 2], [-TILEWIDTH / 2, 0],
+          [-TILEHEIGHT / 2, -TILEHEIGHT / 2], [TILEHEIGHT / 2, -TILEHEIGHT / 2]],
       });
 
       this.on("drag");
@@ -43,9 +48,13 @@ window.addEventListener('load',function(e) {
   });
 
   Q.scene("map", function(stage) {
+    var x_spacing = TILEWIDTH * 1.5;
     for(row = 0; row < 10; row += 1) {
       for(col = 0; col < 10; col += 1) {
-        stage.insert(new Q.Tile({x: 300 * col + (row % 2 == 0 ? 0 : 150), y: row * 50}));
+        stage.insert(new Q.Tile({
+          x: x_spacing * col + (row % 2 == 0 ? 0 : x_spacing / 2),
+          y: row * TILEHEIGHT / 2
+        }));
       }
     }
     //stage.insert(new Q.Tile());
