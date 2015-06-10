@@ -8,11 +8,12 @@ window.addEventListener('load',function(e) {
     .touch(Q.SPRITE_ALL);              // Add in touch support (for the UI)
 
   Q.Sprite.extend("Tile", {
-    init: function(p) {
+    init: function(p, x, y) {
+      console.log(x, y);
       this._super(p, {
         asset: "grass.png",
-        x: 100,
-        y: 100,
+        x: x,
+        y: y,
         w: 200,
         h: 100,
         points: [[100, 0], [50, 50], [-50, 50], [-100, 0], [-50, -50], [50, -50]],
@@ -42,12 +43,12 @@ window.addEventListener('load',function(e) {
   });
 
   Q.scene("map", function(stage) {
-    // for(x = 0; x < 500; x += 10) {
-    //   for(y = 0; y < 500; y += 10) {
-    //     stage.insert(new Q.Tile());
-    //   }
-    // }
-    stage.insert(new Q.Tile());
+    for(row = 0; row < 10; row += 1) {
+      for(col = 0; col < 10; col += 1) {
+        stage.insert(new Q.Tile({x: 300 * col + (row % 2 == 0 ? 0 : 150), y: row * 50}));
+      }
+    }
+    //stage.insert(new Q.Tile());
     // stage.moveTo(0, 0);
   });
 
