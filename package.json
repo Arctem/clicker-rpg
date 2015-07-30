@@ -1,0 +1,13 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Arctem/clicker-rpg.git"
+  },
+  "name": "clicker-rpg",
+  "author": "Russell White",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.13.1",
+    "socket.io": "^1.3.6"
+  }
+}

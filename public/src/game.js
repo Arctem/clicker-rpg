@@ -8,11 +8,10 @@ window.addEventListener('load',function(e) {
     .include("Sprites, Scenes, Input, 2D, Touch")
   Q.setup({ maximize: true })          // Add a canvas element onto the page
     .controls()                        // Add in default controls (keyboard, buttons)
-    .touch(Q.SPRITE_ALL);              // Add in touch support (for the UI)
+    .touch();              // Add in touch support (for the UI)
 
   Q.Sprite.extend("Tile", {
     init: function(p, x, y) {
-      console.log(x, y);
       this._super(p, {
         asset: "grass.png",
         x: x,
@@ -24,8 +23,8 @@ window.addEventListener('load',function(e) {
           [-TILEHEIGHT / 2, -TILEHEIGHT / 2], [TILEHEIGHT / 2, -TILEHEIGHT / 2]],
       });
 
-      this.on("drag");
-      this.on("touchEnd");
+      // this.on("drag");
+      // this.on("touchEnd");
     },
 
     drag: function(touch) {
@@ -57,8 +56,7 @@ window.addEventListener('load',function(e) {
         }));
       }
     }
-    //stage.insert(new Q.Tile());
-    // stage.moveTo(0, 0);
+    stage.add("viewport");
   });
 
   Q.load("grass.png", function() {
@@ -69,6 +67,11 @@ window.addEventListener('load',function(e) {
   Q.debugFill = true;
 
   var currentObj = null;
+
+  Q.el.addEventListener("mousedrag", function(touch) {
+    console.log(touch.p);
+  });
+
 
   Q.el.addEventListener('mousemove', function(e) {
     var x = e.offsetX || e.layerX,
